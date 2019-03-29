@@ -19,13 +19,27 @@
 
     <!-- Moment.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <style type="text/css">
+      body {
+        padding: 10px 100px;
+        background-image: url(./what-the-hex.png);
+      }
+      .jumbotron {
+        background-image: url(./train-background.png);
+        background-size: cover;
+      }
+      h1,
+      h3 {
+        color: #2822125;
+      }
+    </style>
   </head>
 
   <body>
     <div class="container-fluid">
       <div class="jumbotron text-center">
         <h1>Train Scheduler</h1>
-        <h3>Table of The Next Available Trains</h3>
+        <h3>Table of Next Available Trains</h3>
       </div>
 
       <div class="row">
@@ -39,7 +53,7 @@
                   <tr>
                     <th class="text-center" scope="col">Train Name</th>
                     <th class="text-center" scope="col">Destination</th>
-                    <th class="text-center" scope="col">Frequency</th>
+                    <th class="text-center" scope="col">Frequency (min.)</th>
                     <th class="text-center" scope="col">Next Arrival</th>
                     <th class="text-center" scope="col">Minutes Away</th>
                   </tr>
