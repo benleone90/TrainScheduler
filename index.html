@@ -30,7 +30,9 @@
       }
       h1,
       h3 {
-        color: #2822125;
+        color: #fff;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+          1px 1px 0 #000;
       }
     </style>
   </head>
@@ -46,13 +48,14 @@
         <div class="col-md-12">
           <!-- Current Employees-->
           <div class="card mb-4">
-            <div class="card-header">Current Train Schedule</div>
+            <div class="card-header h5">Current Train Schedule</div>
             <div class="card-body">
               <table class="table table-sm table-hover" id="train-table">
                 <thead>
                   <tr>
                     <th class="text-center" scope="col">Train Name</th>
                     <th class="text-center" scope="col">Destination</th>
+                    <th class="text-center" scope="col">First Train</th>
                     <th class="text-center" scope="col">Frequency (min.)</th>
                     <th class="text-center" scope="col">Next Arrival</th>
                     <th class="text-center" scope="col">Minutes Away</th>
@@ -69,7 +72,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card mb-4">
-            <div class="card-header">Add Train</div>
+            <div class="card-header h5">Add Train</div>
             <div class="card-body">
               <form>
                 <div class="form-group">

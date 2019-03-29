@@ -28,7 +28,7 @@ $("#add-train-btn").on("click", function(event) {
       .val()
       .trim(),
     "HH:mm"
-  ).format("X");
+  ).format("HH:mm");
   var freqInput = $("#freq-input")
     .val()
     .trim();
@@ -75,19 +75,36 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(firstTrain);
   console.log(freqInput);
 
-  // Convert Unix time to AM/PM time
-  var firstTrainPretty = moment.unix(firstTrain).format("hh:mm A");
+  // Convert First Train to earlier than current time
+  var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+  console.log(firstTrainConverted);
 
-  // Calculate time until next train
-  var minAway = moment().diff(moment(firstTrain, "X"), "minutes");
-  console.log(minAway);
+  // Log Current Time
+  var currentTime = moment();
+  console.log("Current Time: " + currentTime.format("hh:mm"));
+
+  //Difference between Current Time and First Train
+  var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
+  console.log("Difference in Time: " + diffTime);
+
+  // Time Apart (remainder)
+  var timeRemaind = diffTime % freqInput;
+  console.log(timeRemaind);
+
+  // Minutes Until Next Train
+  var minAway = freqInput - timeRemaind;
+  console.log("Minutes Until Next Train: " + minAway);
+
+  var nextArrival = moment().add(minAway, "minutes");
+  console.log("Arrival Time: " + moment(nextArrival).format("hh:mm"));
 
   // Create new row to be appended to the table
   var newRow = $("<tr>").append(
     $('<td class="text-center">').text(trainName),
     $('<td class="text-center">').text(destName),
+    $('<td class="text-center">').text(firstTrain),
     $('<td class="text-center">').text(freqInput + " minutes"),
-    $('<td class="text-center">').text(firstTrainPretty),
+    $('<td class="text-center">').text(moment(nextArrival).format("hh:mm A")),
     $('<td class="text-center">').text(minAway)
   );
 
